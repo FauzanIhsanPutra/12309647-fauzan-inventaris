@@ -44,10 +44,9 @@ Route::middleware('isOperator')->group(function () {
     });
     Route::resource('staff/item', StaffItemController::class);
     Route::resource('staff/lending', LendingController::class);
+    Route::get('/item/export', [ItemController::class, 'export'])->name('item.export');
     // Route::resource('profile', ProfileController::class);
-});
-
-Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'index'])->name('profile.index');
     Route::post('/profile/update', [ProfileController::class, 'update'])->name('profile.update');
 });
+

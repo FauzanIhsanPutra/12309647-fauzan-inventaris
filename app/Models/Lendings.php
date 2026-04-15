@@ -14,6 +14,7 @@ class Lendings extends Model
         'item_id',
         'total',
         'keterangan',
+        'created_by',
     ];
 
     public function item()

@@ -20,7 +20,9 @@ return new class extends Migration
             $table->integer('total');
             $table->string('keterangan');
             $table->string('status')->default('Dipinjam');
+            $table->string('created_by');
             $table->string('edited_by')->nullable()->default(null);
+
             $table->timestamps();
         });
     }

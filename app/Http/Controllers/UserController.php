@@ -82,7 +82,19 @@ class UserController extends Controller
         ]);
 
         $user = User::findOrFail($id);
-        $user->update($request->all());
+
+        // ambil data yang aman
+        $data = [
+            'name' => $request->name,
+            'email' => $request->email,
+        ];
+
+        // 🔥 kalau password diisi → hash
+        if ($request->filled('password')) {
+            $data['password'] = \Illuminate\Support\Facades\Hash::make($request->password);
+        }
+
+        $user->update($data);
 
         return redirect()->route('users.index')
             ->with('success', 'User updated successfully.');

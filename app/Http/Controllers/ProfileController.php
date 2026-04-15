@@ -55,19 +55,20 @@ class ProfileController extends Controller
      */
     public function update(Request $request)
     {
-        $user = auth()->user();
+        /** @var \App\Models\User $user */
+        $user = \App\Models\User::find(auth()->id());
 
         $request->validate([
-            'password' => 'nullable|min:6',
+            'password' => 'nullable|min:6|confirmed',
         ]);
 
         if ($request->filled('password')) {
             $user->update([
-                'password' => Hash::make($request->password)
+                'password' => \Illuminate\Support\Facades\Hash::make($request->password)
             ]);
         }
 
-        return redirect()->route('profile.index')
+        return redirect('/staff/dashboard')
             ->with('success', 'Password berhasil diubah');
     }
 

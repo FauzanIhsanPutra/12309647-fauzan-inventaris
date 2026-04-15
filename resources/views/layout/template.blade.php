@@ -91,10 +91,13 @@
             <span class="menu-btn text-white" onclick="toggleSidebar()">☰</span>
             <span class="navbar-brand mb-0 h1">Aplikasi Management</span>
 
+            @if (auth()->check())
             <form action="{{ route('logout') }}" method="POST">
                 @csrf
                 <button class="btn btn-light btn-sm">Logout</button>
             </form>
+            @endif
+            
         </div>
     </nav>
 

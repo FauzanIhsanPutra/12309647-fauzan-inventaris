@@ -8,6 +8,12 @@
         <p>Welcome! Choose a menu below to manage data.</p>
     </div>
 
+    @if(session('success'))
+        <div class="alert alert-success">
+            {{ session('success') }}
+        </div>
+    @endif
+
     <div class="row justify-content-center">
 
         <!-- Items -->
@@ -35,10 +41,10 @@
         <!-- Users -->
         <div class="col-md-3 mb-4">
             <div class="card shadow text-center p-3">
-                <h4>Users</h4>
-                <p>Manage user accounts</p>
+                <h4>Profile</h4>
+                <p>Manage your account</p>
                 <a href="{{ route('profile.index') }}" class="btn btn-warning">
-                    Go to Users
+                    Go to Profile form
                 </a>
             </div>
         </div>

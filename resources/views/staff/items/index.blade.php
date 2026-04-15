@@ -37,7 +37,7 @@
                     <td>{{ $value->total }}</td>
                     <td>{{ $value->lendings->sum('total') }}</td>
                     <td>{{ $value->repair }}</td>
-                    <td>{{ $value->available - $value->lendings->sum('total') }}</td>
+                    <td>{{ $value->total - $value->lendings->sum('total') - $value->repair }}</td>
                 </tr>
             @endforeach
         </tbody>

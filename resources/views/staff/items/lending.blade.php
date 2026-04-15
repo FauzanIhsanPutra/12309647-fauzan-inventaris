@@ -11,6 +11,9 @@
         <a href="{{ route('item.index') }}" class="btn btn-secondary">
             Back to Items
         </a>
+        <div>
+            <a href="{{ route('item.export') }}" class="btn btn-secondary">Export to Excel</a>
+        </div>
     </div>
 </div>
 
@@ -38,7 +41,8 @@
             <th>Keterangan</th>
             <th>Tanggal</th>
             <th>Status</th>
-            <th>Staff PJ</th>
+            <th>Pemberi</th>
+            <th>Penerima</th>
             <th width="250px">Action</th>
         </tr>
     </thead>
@@ -71,6 +75,9 @@
                 <span class="badge bg-success">Dikembalikan</span>
                 @endif
             </td>
+
+            <!-- pemberi pinjaman -->
+             <td>{{ $value->created_by }}</td>
 
             {{-- Staff --}}
             <td>{{ $value->edited_by ?? '-' }}</td>

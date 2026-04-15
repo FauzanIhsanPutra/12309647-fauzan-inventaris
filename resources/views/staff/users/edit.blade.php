@@ -5,9 +5,17 @@
     <h3>Edit Password</h3>
 
     @if(session('success'))
-        <div class="alert alert-success">
-            {{ session('success') }}
-        </div>
+    <div class="alert alert-success">
+        {{ session('success') }}
+    </div>
+    @endif
+
+    @if ($errors->any())
+    <div class="alert alert-danger">
+        @foreach ($errors->all() as $error)
+        <div>{{ $error }}</div>
+        @endforeach
+    </div>
     @endif
 
     <form action="{{ route('profile.update') }}" method="POST">
@@ -26,10 +34,10 @@
             <label>Password Baru</label>
             <input type="password" name="password" class="form-control">
         </div>
-            <div class="mb-3">
-                <label>Konfirmasi Password Baru</label>
-                <input type="password" name="password_confirmation" class="form-control">
-            </div>
+        <div class="mb-3">
+            <label>Konfirmasi Password Baru</label>
+            <input type="password" name="password_confirmation" class="form-control">
+        </div>
 
 
         <button type="submit" class="btn btn-primary">Update Password</button>

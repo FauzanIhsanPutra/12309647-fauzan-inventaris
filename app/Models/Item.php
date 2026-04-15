@@ -27,4 +27,9 @@ class Item extends Model
     {
         return $this->hasMany(\App\Models\Lendings::class);
     }
+
+    public function items()
+    {
+        return $this->hasMany(Item::class);
+    }
 }

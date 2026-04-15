@@ -36,6 +36,7 @@ class LendingController extends Controller
             'item_id' => 'required|exists:items,id',
             'total' => 'required|integer|min:1',
             'keterangan' => 'required|string',
+            ''
         ]);
 
         $item = \App\Models\Item::find($request->item_id);
@@ -46,9 +47,16 @@ class LendingController extends Controller
                 ->withInput();
         }
 
-        // simpan lending
-        Lendings::create($request->all());
 
+        Lendings::create([
+            'nama_peminjam' => $request->nama_peminjam,
+            'item_id' => $request->item_id,
+            'total' => $request->total,
+            'keterangan' => $request->keterangan,
+            'status' => 'Dipinjam',
+            'created_by' => auth()->user()->name ?? 'Unknown',
+        ]);
+        
         return redirect()->route('lending.index')
             ->with('success', 'Lending created successfully.');
     }

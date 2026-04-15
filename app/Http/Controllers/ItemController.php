@@ -2,8 +2,11 @@
 
 namespace App\Http\Controllers;
 
+use App\Exports\StaffItemExport;
 use App\Models\Item;
 use Illuminate\Http\Request;
+use Maatwebsite\Excel\Facades\Excel;
+use App\Exports\UserExport;
 
 class ItemController extends Controller
 {
@@ -82,6 +85,7 @@ class ItemController extends Controller
             'total' => $request->total,
             'repair' => $updateRepair,
             'available' => $request->total - $updateRepair - $item->lending,
+            'lendings' => $item->lending,
         ]);
 
         return redirect()->route('items.index')
@@ -97,5 +101,10 @@ class ItemController extends Controller
 
         return redirect()->route('items.index')
             ->with('success', 'Item deleted successfully.');
+    }
+
+    public function export()
+    {
+        return Excel::download(new StaffItemExport(), 'staff-items.xlsx');
     }
 }
